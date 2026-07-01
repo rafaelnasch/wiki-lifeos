@@ -41,7 +41,7 @@ separa três coisas que costumam ser confundidas:
 
 Régua rápida: **estudo = INPUT (entender)** · **worklog = OUTPUT (construir)**.
 
-### Maturidade: captura → processar → promover
+### O fluxo: UMA porta de entrada, DOIS passos
 
 `00-capture/` é **inbox transiente**. Processar não apaga conhecimento —
 **promove** o conteúdo pra sua casa permanente e **esvazia** o slot do inbox. O
@@ -56,8 +56,17 @@ raw nunca se perde (vive na camada de destino + git guarda o original).
   worklogs/  →  35-worklogs/ + harvest/  (/lifeos-worklog — colheita)
 ```
 
-`studies/` e `worklogs/` são **rascunhos WIP** que você constrói
-incrementalmente; só são promovidos quando finalizados.
+`00-capture/studies/` e `worklogs/` são rascunhos WIP **opcionais**; a maturidade
+WIP↔done é o campo `status:`, **não** a pasta.
+
+> **Uma porta só:** você entra sempre pelo **capture** (Passo 1) — cru, sem
+> organizar. A IA promove no **Passo 2** (`/lifeos-capture`): classifica, **quebra
+> em conceitos atômicos**, linka e esvazia o inbox. `/lifeos-study`,
+> `/lifeos-ingest`, `/lifeos-journal` e `/lifeos-worklog` **não são portas de
+> entrada** — são o **motor de promoção** que o `/lifeos-capture` aciona por baixo.
+> Nunca jogue conteúdo "pronto" direto numa camada canônica pulando o inbox: isso
+> deixa um **monólito bruto** (arquivo grande, sem links) onde deveria haver
+> conceitos atômicos. Um estudo/worklog só vira `done` **depois da colheita**.
 
 ---
 
@@ -155,9 +164,12 @@ linguagem natural** pro comando certo. Fale como pensa.
 - ❌ Cria nota pra toda menção marginal — **linka** em vez de duplicar.
 - ❌ Resume fontes — **extrai conceitos atômicos**.
 - ❌ Modifica `10-sources/` — é **read-only, sagrado** (append-only).
-- ❌ Deleta com `rm` — **move pra `_trash/` antes**.
+- ❌ Deleta com `rm` — **move pra `_trash/` antes** (espelhando o caminho de origem).
 - ❌ Deixa o inbox acumular — **inbox-zero** é o estado saudável.
 - ❌ Promove rascunho imaturo pro `20-wiki/` canônico.
+- ❌ Escreve conteúdo "pronto" direto numa camada canônica **pulando o inbox**.
+- ❌ Deixa um **monólito bruto** (arquivo grande, poucos links) numa camada — sempre **atomiza**.
+- ❌ Marca estudo/worklog como `done` **sem colher** os conceitos.
 - ❌ Mistura naturezas (estudo / trabalho / vida) na camada errada.
 - ❌ Ignora contradições entre notas — **sinaliza**.
 

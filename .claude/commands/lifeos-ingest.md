@@ -6,6 +6,11 @@ allowed-tools: WebFetch, Read, Write, Edit, Glob, Grep, Bash
 
 Ingira a fonte seguindo o AGENTS.md: $ARGUMENTS
 
+> **Motor de promoção, não porta de entrada do humano.** O raw da fonte vive em
+> `10-sources/` (read-only) — isso é esperado. Mas **ingerir SEM extrair conceitos
+> atômicos + `[[wikilinks]]` é bug**: nunca deixe uma fonte grande na camada canônica
+> sem atomizar. Se não der pra colher agora, não marque como processada.
+
 1. Se for URL, busque com WebFetch. Se arquivo, leia. Se texto, use direto.
 2. Salve o **cru** em `10-sources/<tipo>/<slug>.md` (tipo = articles/books/courses/
    papers/podcasts/videos). **Read-only / append-only** — nunca modificar depois.

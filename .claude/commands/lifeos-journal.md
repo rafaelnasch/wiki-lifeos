@@ -13,4 +13,5 @@ Entrada de diário (natureza = **vida**): $ARGUMENTS
    família, fé, trabalho), considere atualizar a área em `20-wiki/areas/`.
 4. Se detectar um padrão recorrente (ex: mesma tensão repetindo), registre/atualize
    em `20-wiki/patterns/`.
-5. Esvazie o slot de `00-capture/diary/` que processou. Relate brevemente.
+5. Esvazie o slot de `00-capture/diary/` movendo o raw pra `_trash/` **espelhando o
+   caminho** (`00-capture/diary/x.md` → `_trash/00-capture/diary/x.md`; `git mv`, nunca `rm`). Relate brevemente.
