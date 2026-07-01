@@ -17,10 +17,10 @@ que costumam ser confundidas:
 
 | Natureza | O que é | Casa | Comando |
 |---|---|---|---|
-| **Vida** | interior, humor, família, oração, filosofia | `40-journal/daily/` | `/lifeos-journal` |
-| **Estudo** (INPUT) | algo em formação que você quer **entender** — teoria, livro, curso | `25-studies/` | `/lifeos-study` |
-| **Trabalho** (OUTPUT) | algo que você **executou/construiu** — implementação, debug, deploy | `35-worklogs/` | `/lifeos-worklog` |
-| **Conhecimento** | maduro, atômico, linkado, reutilizável | `20-wiki/` | `/lifeos-ingest` |
+| **Vida** | interior, humor, família, oração, filosofia | `40-journal/daily/` | `/diario` |
+| **Estudo** (INPUT) | algo em formação que você quer **entender** — teoria, livro, curso | `25-studies/` | `/estudo` |
+| **Trabalho** (OUTPUT) | algo que você **executou/construiu** — implementação, debug, deploy | `35-worklogs/` | `/trabalho` |
+| **Conhecimento** | maduro, atômico, linkado, reutilizável | `20-wiki/` | `/fonte` |
 
 **Régua rápida:** `estudo = INPUT (entender)` · `worklog = OUTPUT (construir)`.
 
@@ -32,7 +32,7 @@ IA promove.** São dois passos, sempre nessa ordem:
 
 ```
 PASSO 1 — CAPTURAR (burro)              PASSO 2 — PROCESSAR (inteligente)
-fale: "salva isso no wiki"            /lifeos-capture
+fale: "salva isso no wiki"            /organizar
   ou largar .md em 00-capture/     →     a IA classifica pela natureza,
   cru: não organiza, não linka           QUEBRA em conceitos atômicos, linka,
   → 00-capture/quick/                    promove pra casa e ZERA o inbox
@@ -41,16 +41,16 @@ fale: "salva isso no wiki"            /lifeos-capture
 - **Passo 1 é burro de propósito.** Capturar não organiza, não classifica, não
   linka — só deposita o cru no inbox. Basta falar com o agente ("salva isso no
   wiki") ou largar um `.md` em `00-capture/quick/` — sem cerimônia.
-- **Passo 2 é onde a inteligência acontece.** `/lifeos-capture` lê o inbox, decide
+- **Passo 2 é onde a inteligência acontece.** `/organizar` lê o inbox, decide
   a natureza, **atomiza** (extrai conceitos pra `20-wiki/concepts/`), cria
   `[[wikilinks]]`, promove pra casa certa e **esvazia o slot**.
 - Processar **não apaga** — **promove** o valor e esvazia o inbox. O raw nunca se
   perde (vive na camada de destino + git guarda o original). **Inbox-zero é o
   estado saudável.**
 
-> **`/lifeos-study`, `/lifeos-ingest`, `/lifeos-journal` e `/lifeos-worklog` NÃO
+> **`/estudo`, `/fonte`, `/diario` e `/trabalho` NÃO
 > são portas de entrada do humano** — são o **motor de promoção** que o
-> `/lifeos-capture` aciona por baixo pra tratar cada natureza. **Nunca** use esses
+> `/organizar` aciona por baixo pra tratar cada natureza. **Nunca** use esses
 > comandos pra jogar conteúdo "pronto" direto numa camada canônica pulando o inbox:
 > esse atalho faz um estudo gigante entrar em `25-studies/` **sem ser atomizado nem
 > linkado** — um monólito bruto. Tem conteúdo? **Capture primeiro** (Passo 1); a IA
@@ -60,16 +60,16 @@ fale: "salva isso no wiki"            /lifeos-capture
 > (`.obsidian/app.json`) pra criar qualquer nota nova em `00-capture/quick/` —
 > inclusive os stubs vazios que ele gera ao clicar num **link-fantasma** `[[x]]`.
 > Isso é proposital: nada não-classificado cai na raiz nem na camada canônica.
-> Stub vazio (0 byte) → o `/lifeos-capture` manda pro `_trash/` e o `[[x]]` volta
+> Stub vazio (0 byte) → o `/organizar` manda pro `_trash/` e o `[[x]]` volta
 > a ser fantasma. **Nunca** crie nota nova solta na raiz nem escreva conteúdo
 > "pronto" direto numa camada canônica.
 
 ```
 00-capture/  →  [PROCESSAR: classificar + atomizar + linkar]  →  casa permanente
   quick/     →  classifica → qualquer camada
-  diary/     →  40-journal/daily/        (/lifeos-journal)
-  studies/   →  25-studies/              (/lifeos-study)
-  worklogs/  →  35-worklogs/ + harvest/  (/lifeos-worklog — colheita)
+  diary/     →  40-journal/daily/        (/diario)
+  studies/   →  25-studies/              (/estudo)
+  worklogs/  →  35-worklogs/ + harvest/  (/trabalho — colheita)
 ```
 
 `00-capture/studies/` e `worklogs/` são rascunhos WIP **opcionais** que a IA
@@ -131,20 +131,20 @@ Termine com `## Conexões` e `## Fontes` quando fizer sentido.
 
 ## Seus comportamentos (faça sempre)
 
-1. **Capturar** (`/lifeos-capture`): classifique cada item de `00-capture/quick/`
+1. **Capturar** (`/organizar`): classifique cada item de `00-capture/quick/`
    pela natureza, **quebre em conceitos atômicos + linke**, promova pra casa certa,
    **zere o slot**. Promover é PROCESSAR, não só mover — nunca deposite um monólito.
-2. **Ingerir fonte** (`/lifeos-ingest`): salve o cru em `10-sources/`, extraia
+2. **Ingerir fonte** (`/fonte`): salve o cru em `10-sources/`, extraia
    conceitos atômicos pra `20-wiki/concepts/`, crie links bidirecionais (faça
    `grep` antes pra não duplicar).
-3. **Colher worklog** (`/lifeos-worklog`): ao finalizar um worklog, **colha
+3. **Colher worklog** (`/trabalho`): ao finalizar um worklog, **colha
    (harvest)** os conceitos reutilizáveis pra `20-wiki/` via `35-worklogs/harvest/`.
 4. **Atualizar áreas**: quando algo afeta um domínio de vida, atualize a nota em
    `20-wiki/areas/`.
 5. **Detectar padrões**: ao notar recorrência entre notas, registre em
    `20-wiki/patterns/`.
 6. **Manter saúde**: links bidirecionais, **inbox-zero**, sinalize WIP parado.
-7. **Responder pergunta** (`/lifeos-ask`): sintetize **só do vault**, cite as
+7. **Responder pergunta** (`/perguntar`): sintetize **só do vault**, cite as
    `[[notas]]`; salve a análise em `20-wiki/syntheses/` se for valiosa.
 
 ## Convenções

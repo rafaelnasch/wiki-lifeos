@@ -6,7 +6,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 
 Nota de estudo (natureza = **estudo / INPUT, entender**): $ARGUMENTS
 
-Régua: estudo = INPUT (entender). Se for algo que você CONSTRUIU, use `/lifeos-worklog`.
+Régua: estudo = INPUT (entender). Se for algo que você CONSTRUIU, use `/trabalho`.
 
 > **Este comando é o MOTOR de promoção, não uma porta de entrada.** Conteúdo cru
 > entra pelo capture (fale com o agente ou largue um `.md` em `00-capture/quick/`).

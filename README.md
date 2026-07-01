@@ -34,10 +34,10 @@ separa três coisas que costumam ser confundidas:
 
 | Natureza | O que é | Casa | Comando |
 |---|---|---|---|
-| **Vida** | interior, humor, família, oração, filosofia | `40-journal/daily/` | `/lifeos-journal` |
-| **Estudo** (INPUT) | algo que você quer **entender** — teoria, livro, curso | `25-studies/` | `/lifeos-study` |
-| **Trabalho** (OUTPUT) | algo que você **executou/construiu** — código, debug, deploy | `35-worklogs/` | `/lifeos-worklog` |
-| **Conhecimento** | maduro, atômico, linkado, reutilizável | `20-wiki/` | `/lifeos-ingest` |
+| **Vida** | interior, humor, família, oração, filosofia | `40-journal/daily/` | `/diario` |
+| **Estudo** (INPUT) | algo que você quer **entender** — teoria, livro, curso | `25-studies/` | `/estudo` |
+| **Trabalho** (OUTPUT) | algo que você **executou/construiu** — código, debug, deploy | `35-worklogs/` | `/trabalho` |
+| **Conhecimento** | maduro, atômico, linkado, reutilizável | `20-wiki/` | `/fonte` |
 
 Régua rápida: **estudo = INPUT (entender)** · **worklog = OUTPUT (construir)**.
 
@@ -51,19 +51,19 @@ raw nunca se perde (vive na camada de destino + git guarda o original).
 ```
 00-capture/  →  [processar / promover]  →  casa permanente
   quick/     →  classifica → qualquer camada
-  diary/     →  40-journal/daily/        (/lifeos-journal)
-  studies/   →  25-studies/              (/lifeos-study)
-  worklogs/  →  35-worklogs/ + harvest/  (/lifeos-worklog — colheita)
+  diary/     →  40-journal/daily/        (/diario)
+  studies/   →  25-studies/              (/estudo)
+  worklogs/  →  35-worklogs/ + harvest/  (/trabalho — colheita)
 ```
 
 `00-capture/studies/` e `worklogs/` são rascunhos WIP **opcionais**; a maturidade
 WIP↔done é o campo `status:`, **não** a pasta.
 
 > **Uma porta só:** você entra sempre pelo **capture** (Passo 1) — cru, sem
-> organizar. A IA promove no **Passo 2** (`/lifeos-capture`): classifica, **quebra
-> em conceitos atômicos**, linka e esvazia o inbox. `/lifeos-study`,
-> `/lifeos-ingest`, `/lifeos-journal` e `/lifeos-worklog` **não são portas de
-> entrada** — são o **motor de promoção** que o `/lifeos-capture` aciona por baixo.
+> organizar. A IA promove no **Passo 2** (`/organizar`): classifica, **quebra
+> em conceitos atômicos**, linka e esvazia o inbox. `/estudo`,
+> `/fonte`, `/diario` e `/trabalho` **não são portas de
+> entrada** — são o **motor de promoção** que o `/organizar` aciona por baixo.
 > Nunca jogue conteúdo "pronto" direto numa camada canônica pulando o inbox: isso
 > deixa um **monólito bruto** (arquivo grande, sem links) onde deveria haver
 > conceitos atômicos. Um estudo/worklog só vira `done` **depois da colheita**.
@@ -107,13 +107,13 @@ ativos):
 
 | Comando | Natureza | Destino |
 |---|---|---|
-| `/lifeos-capture` | processa o inbox cru | classifica → qualquer camada |
-| `/lifeos-journal` | vida | `40-journal/daily/` |
-| `/lifeos-study` | estudo (input) | `25-studies/` |
-| `/lifeos-worklog` | trabalho (output) | `35-worklogs/` + `harvest/` |
-| `/lifeos-ingest` | fonte externa | `10-sources/` + `20-wiki/concepts/` |
-| `/lifeos-ask` | pergunta | resposta + `20-wiki/syntheses/` |
-| `/lifeos-lint` | saúde do vault | relatório |
+| `/organizar` | processa o inbox cru | classifica → qualquer camada |
+| `/diario` | vida | `40-journal/daily/` |
+| `/estudo` | estudo (input) | `25-studies/` |
+| `/trabalho` | trabalho (output) | `35-worklogs/` + `harvest/` |
+| `/fonte` | fonte externa | `10-sources/` + `20-wiki/concepts/` |
+| `/perguntar` | pergunta | resposta + `20-wiki/syntheses/` |
+| `/revisar` | saúde do vault | relatório |
 
 ---
 
@@ -131,19 +131,19 @@ linguagem natural** pro comando certo. Fale como pensa.
 **Processar / promover** — quando quiser, esvazie o inbox:
 
 > *O que tem pendente no inbox?*
-> *Processa o inbox* &nbsp;→ `/lifeos-capture`
-> *Colhe o log de hoje* &nbsp;→ `/lifeos-worklog` (worklog → harvest)
+> *Processa o inbox* &nbsp;→ `/organizar`
+> *Colhe o log de hoje* &nbsp;→ `/trabalho` (worklog → harvest)
 
 **Integrar fonte e perguntar:**
 
-> *Integra o artigo em 10-sources/articles/nome.md* &nbsp;→ `/lifeos-ingest`
-> *O que eu sei sobre produtividade e sono?* &nbsp;→ `/lifeos-ask`
+> *Integra o artigo em 10-sources/articles/nome.md* &nbsp;→ `/fonte`
+> *O que eu sei sobre produtividade e sono?* &nbsp;→ `/perguntar`
 > *Salva isso no wiki* &nbsp;→ resposta vira `20-wiki/syntheses/`
 
 **Vida (fim do dia) e manutenção:**
 
-> *Processa o journal de hoje* &nbsp;→ `/lifeos-journal` (daily → sinais → áreas)
-> *Faz um health check no wiki* &nbsp;→ `/lifeos-lint`
+> *Processa o journal de hoje* &nbsp;→ `/diario` (daily → sinais → áreas)
+> *Faz um health check no wiki* &nbsp;→ `/revisar`
 
 ---
 
@@ -191,10 +191,11 @@ git init && git add -A && git commit -m "meu second brain"
 claude
 ```
 
-Pronto: o **`AGENTS.md`** e os **7 comandos `/lifeos-*`** já estão ativos.
+Pronto: o **`AGENTS.md`** e os **7 comandos** (`/organizar`, `/estudo`,
+`/trabalho`, `/diario`, `/fonte`, `/perguntar`, `/revisar`) já estão ativos.
 
-**Comece capturando** — rode `/lifeos-capture` ou jogue um `.md` em
-`00-capture/quick/`. Depois `/lifeos-ask "..."` pra perguntar ao seu cérebro.
+**Comece capturando** — rode `/organizar` ou jogue um `.md` em
+`00-capture/quick/`. Depois `/perguntar "..."` pra perguntar ao seu cérebro.
 
 > **Obsidian (opcional):** abra a mesma pasta como vault pra ver o grafo de
 > conexões e os backlinks. O Obsidian é só a camada visual — o cérebro é o agente.

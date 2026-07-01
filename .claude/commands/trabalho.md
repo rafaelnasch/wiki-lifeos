@@ -6,7 +6,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 
 Worklog (natureza = **trabalho / OUTPUT, construir**): $ARGUMENTS
 
-Régua: worklog = OUTPUT (construir). Se for algo que você quer ENTENDER, use `/lifeos-study`.
+Régua: worklog = OUTPUT (construir). Se for algo que você quer ENTENDER, use `/estudo`.
 
 1. Se vazio, processe rascunhos em `00-capture/worklogs/`.
 2. Crie/atualize `35-worklogs/<slug>.md` com frontmatter `type: worklog`,

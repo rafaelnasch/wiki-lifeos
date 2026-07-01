@@ -9,10 +9,10 @@ Processe o inbox seguindo o AGENTS.md. Objetivo: **inbox-zero**.
    o Obsidian criou ao clicar num link-fantasma) → mande direto pro `_trash/` espelhando
    o caminho, sem promover; o `[[link]]` volta a ser fantasma (estado desejável).
 2. Pra cada item, classifique pela **natureza** (não pelo assunto):
-   - vida/interior/família → `40-journal/daily/` (estilo `/lifeos-journal`)
+   - vida/interior/família → `40-journal/daily/` (estilo `/diario`)
    - estudo / quero entender (INPUT) → `00-capture/studies/` ou `25-studies/`
    - trabalho executado (OUTPUT) → `00-capture/worklogs/` ou `35-worklogs/`
-   - conhecimento maduro / link / fonte → `/lifeos-ingest` (10-sources + 20-wiki)
+   - conhecimento maduro / link / fonte → `/fonte` (10-sources + 20-wiki)
 3. **Promova (não é só mover — é PROCESSAR):** leve o valor pra casa certa com
    frontmatter e **quebre em conceitos atômicos** pra `20-wiki/concepts/` com
    `[[wikilinks]]` bidirecionais (faça `grep` em `20-wiki/` antes pra não duplicar).
